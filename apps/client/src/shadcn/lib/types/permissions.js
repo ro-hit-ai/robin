@@ -1,88 +1,101 @@
-export type IssuePermission =
-  | "issue::create"
-  | "issue::read"
-  | "issue::write"
-  | "issue::update"
-  | "issue::delete"
-  | "issue::assign"
-  | "issue::transfer"
-  | "issue::comment";
+// Permission constants
+const IssuePermissions = [
+  "issue::create",
+  "issue::read",
+  "issue::write",
+  "issue::update",
+  "issue::delete",
+  "issue::assign",
+  "issue::transfer",
+  "issue::comment",
+];
 
-export type UserPermission =
-  | "user::create"
-  | "user::read"
-  | "user::update"
-  | "user::delete"
-  | "user::manage";
+const UserPermissions = [
+  "user::create",
+  "user::read",
+  "user::update",
+  "user::delete",
+  "user::manage",
+];
 
-export type RolePermission =
-  | "role::create"
-  | "role::read"
-  | "role::update"
-  | "role::delete"
-  | "role::manage";
+const RolePermissions = [
+  "role::create",
+  "role::read",
+  "role::update",
+  "role::delete",
+  "role::manage",
+];
 
-export type TeamPermission =
-  | "team::create"
-  | "team::read"
-  | "team::update"
-  | "team::delete"
-  | "team::manage";
+const TeamPermissions = [
+  "team::create",
+  "team::read",
+  "team::update",
+  "team::delete",
+  "team::manage",
+];
 
-export type ClientPermission =
-  | "client::create"
-  | "client::read"
-  | "client::update"
-  | "client::delete"
-  | "client::manage";
+const ClientPermissions = [
+  "client::create",
+  "client::read",
+  "client::update",
+  "client::delete",
+  "client::manage",
+];
 
-export type KnowledgeBasePermission =
-  | "kb::create"
-  | "kb::read"
-  | "kb::update"
-  | "kb::delete"
-  | "kb::manage";
+const KnowledgeBasePermissions = [
+  "kb::create",
+  "kb::read",
+  "kb::update",
+  "kb::delete",
+  "kb::manage",
+];
 
-export type SystemPermission =
-  | "settings::view"
-  | "settings::manage"
-  | "webhook::manage"
-  | "integration::manage"
-  | "email_template::manage";
+const SystemPermissions = [
+  "settings::view",
+  "settings::manage",
+  "webhook::manage",
+  "integration::manage",
+  "email_template::manage",
+];
 
-export type TimeTrackingPermission =
-  | "time_entry::create"
-  | "time_entry::read"
-  | "time_entry::update"
-  | "time_entry::delete";
+const TimeTrackingPermissions = [
+  "time_entry::create",
+  "time_entry::read",
+  "time_entry::update",
+  "time_entry::delete",
+];
 
-export type DocumentPermission =
-  | "document::create"
-  | "document::read"
-  | "document::update"
-  | "document::delete"
-  | "document::manage";
+const DocumentPermissions = [
+  "document::create",
+  "document::read",
+  "document::update",
+  "document::delete",
+  "document::manage",
+];
 
-export type WebhookPermission =
-  | "webhook::create"
-  | "webhook::read"
-  | "webhook::update"
-  | "webhook::delete";
+const WebhookPermissions = [
+  "webhook::create",
+  "webhook::read",
+  "webhook::update",
+  "webhook::delete",
+];
 
-export type Permission =
-  | IssuePermission
-  | UserPermission
-  | RolePermission
-  | TeamPermission
-  | ClientPermission
-  | KnowledgeBasePermission
-  | SystemPermission
-  | TimeTrackingPermission
-  | WebhookPermission
-  | DocumentPermission;
+// All permissions combined
+const AllPermissions = [
+  ...IssuePermissions,
+  ...UserPermissions,
+  ...RolePermissions,
+  ...TeamPermissions,
+  ...ClientPermissions,
+  ...KnowledgeBasePermissions,
+  ...SystemPermissions,
+  ...TimeTrackingPermissions,
+  ...DocumentPermissions,
+  ...WebhookPermissions,
+];
 
-// Useful type for grouping permissions by category
-export const PermissionCategories = {
+// Permission categories
+const PermissionCategories = {
   ISSUE: "Issue Management",
   USER: "User Management",
   ROLE: "Role Management",
@@ -93,18 +106,10 @@ export const PermissionCategories = {
   TIME_TRACKING: "Time Tracking",
   WEBHOOK: "Webhook Management",
   DOCUMENTATION: "Documentation",
-} as const;
+};
 
-export type PermissionCategory =
-  (typeof PermissionCategories)[keyof typeof PermissionCategories];
-
-// Helper type for permission groups
-export interface PermissionGroup {
-  category: PermissionCategory;
-  permissions: Permission[];
-}
-
-export const PERMISSIONS_CONFIG = [
+// Configuration of permissions grouped by category
+const PERMISSIONS_CONFIG = [
   {
     category: "Issue Management",
     permissions: [
@@ -206,4 +211,21 @@ export const PERMISSIONS_CONFIG = [
       "webhook::delete",
     ],
   },
-] as const;
+];
+
+// Optional: Export if using modules
+module.exports = {
+  AllPermissions,
+  PermissionCategories,
+  PERMISSIONS_CONFIG,
+  IssuePermissions,
+  UserPermissions,
+  RolePermissions,
+  TeamPermissions,
+  ClientPermissions,
+  KnowledgeBasePermissions,
+  SystemPermissions,
+  TimeTrackingPermissions,
+  DocumentPermissions,
+  WebhookPermissions,
+};
